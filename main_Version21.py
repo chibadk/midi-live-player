@@ -1018,17 +1018,29 @@ class MainWindow(QtWidgets.QMainWindow):
         
         pads_layout = QtWidgets.QGridLayout()
         pads_layout.setSpacing(6)
-        pads_layout.setContentsMargins(8, 8, 8, 8)
-        
+        pads_layout.setContentsMargins(8, 18, 8, 8)
+
         for i in range(12):
             pad = PadButton(i)
             self.pads.append(pad)
             r, c = divmod(i, 6)
             pads_layout.addWidget(pad, r, c)
-        
+
         pads_group = QtWidgets.QGroupBox("🎹 Pads (12) - Right-click: Load, Left-click: Play/Stop")
         pads_group.setLayout(pads_layout)
         pads_group.setMaximumHeight(170)
+        pads_group.setStyleSheet("""
+            QGroupBox:title {
+                subcontrol-origin: margin;
+                left: 12px; top: 2px;
+                padding: 4px 10px 4px 10px;
+                font-size: 14px;
+                font-weight: bold;
+            }
+            QGroupBox {
+                margin-top: 28px;
+            }
+        """)
         
         self.play_btn = QtWidgets.QPushButton("▶ Play")
         self.pause_btn = QtWidgets.QPushButton("⏸ Pause")
